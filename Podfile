@@ -5,6 +5,8 @@ target 'AK-NotesApp' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
+	pod 'SnapKit', '~> 5.7.0'
+
   # Pods for AK-NotesApp
 
   target 'AK-NotesAppTests' do

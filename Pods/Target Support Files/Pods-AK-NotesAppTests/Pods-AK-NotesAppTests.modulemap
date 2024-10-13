@@ -1,0 +1,6 @@
+framework module Pods_AK_NotesAppTests {
+  umbrella header "Pods-AK-NotesAppTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
