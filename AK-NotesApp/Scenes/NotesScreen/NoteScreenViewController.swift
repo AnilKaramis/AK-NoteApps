@@ -12,7 +12,12 @@ class NoteScreenViewController:UIViewController {
     
     private let headerLabel = UILabel()
     private let addNoteButton = UIButton(type: .system)
-    private let viewModel: NotesScreenViewModel
+    
+    lazy private var notesCollection: UICollectionView = {
+        let layout = NoteLayout()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        return collectionView
+    }()
     
     init(viewModel: NotesScreenViewModel) {
         self.viewModel = viewModel
@@ -22,4 +27,5 @@ class NoteScreenViewController:UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    private let viewModel: NotesScreenViewModel
 }
