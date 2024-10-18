@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0C797C7ABAC59F80DC7A7AE9 /* Pods_AK_NotesApp_AK_NotesAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 797B5023C8A29A61BAD05326 /* Pods_AK_NotesApp_AK_NotesAppUITests.framework */; };
 		38680AB50B0424767261B4B7 /* Pods_AK_NotesApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1ABB3FB67F0A6C5F84D7F1A /* Pods_AK_NotesApp.framework */; };
+		A52DB5162CC2F93C0047359E /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52DB5152CC2F93C0047359E /* UIColor.swift */; };
 		A5A91ACF2CBC1BC60096C858 /* AK_NotesAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A91ACC2CBC1BC60096C858 /* AK_NotesAppUITests.swift */; };
 		A5A91AD02CBC1BC60096C858 /* AK_NotesAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A91ACD2CBC1BC60096C858 /* AK_NotesAppUITestsLaunchTests.swift */; };
 		A5A91ADB2CBC1BC60096C858 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A91AD12CBC1BC60096C858 /* AppDelegate.swift */; };
@@ -51,6 +52,7 @@
 		76F18F04F7C73C61273367D6 /* Pods-AK-NotesAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AK-NotesAppTests.release.xcconfig"; path = "Target Support Files/Pods-AK-NotesAppTests/Pods-AK-NotesAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		775077AE801C4AD181B617ED /* Pods-AK-NotesApp-AK-NotesAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AK-NotesApp-AK-NotesAppUITests.release.xcconfig"; path = "Target Support Files/Pods-AK-NotesApp-AK-NotesAppUITests/Pods-AK-NotesApp-AK-NotesAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		797B5023C8A29A61BAD05326 /* Pods_AK_NotesApp_AK_NotesAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AK_NotesApp_AK_NotesAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A52DB5152CC2F93C0047359E /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		A5A91A822CBC175E0096C858 /* AK-NotesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AK-NotesApp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5A91A982CBC17600096C858 /* AK-NotesAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AK-NotesAppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5A91AA22CBC17600096C858 /* AK-NotesAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AK-NotesAppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,6 +115,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A52DB5142CC2F92E0047359E /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				A52DB5152CC2F93C0047359E /* UIColor.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		A5A91A792CBC175E0096C858 = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +157,7 @@
 		A5A91ADA2CBC1BC60096C858 /* AK-NotesApp */ = {
 			isa = PBXGroup;
 			children = (
+				A52DB5142CC2F92E0047359E /* Extension */,
 				A5C46A852CBEF88B003D5774 /* Application */,
 				A5C46A892CBEF8B1003D5774 /* Models */,
 				A5C46A882CBEF8A9003D5774 /* AppData */,
@@ -494,6 +505,7 @@
 				A5C46A9B2CBFA7DB003D5774 /* NoteViewCellModel.swift in Sources */,
 				A5A91ADC2CBC1BC60096C858 /* SceneDelegate.swift in Sources */,
 				A5C46A8F2CBF9ED3003D5774 /* CreateNoteViewController.swift in Sources */,
+				A52DB5162CC2F93C0047359E /* UIColor.swift in Sources */,
 				A5C46A8B2CBF9E52003D5774 /* Note.swift in Sources */,
 				A5C46A992CBFA7C4003D5774 /* NoteViewCell.swift in Sources */,
 				A5C46A972CBFA7A3003D5774 /* NoteLayout.swift in Sources */,
