@@ -115,14 +115,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		A52DB5142CC2F92E0047359E /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				A52DB5152CC2F93C0047359E /* UIColor.swift */,
-			);
-			path = Extension;
-			sourceTree = "<group>";
-		};
 		A5A91A792CBC175E0096C858 = {
 			isa = PBXGroup;
 			children = (
@@ -157,13 +149,12 @@
 		A5A91ADA2CBC1BC60096C858 /* AK-NotesApp */ = {
 			isa = PBXGroup;
 			children = (
-				A52DB5142CC2F92E0047359E /* Extension */,
-				A5C46A852CBEF88B003D5774 /* Application */,
-				A5C46A892CBEF8B1003D5774 /* Models */,
-				A5C46A882CBEF8A9003D5774 /* AppData */,
-				A5C46A872CBEF89D003D5774 /* Extensions */,
 				A5C46A862CBEF892003D5774 /* Views */,
+				A5C46A852CBEF88B003D5774 /* Application */,
 				A5C46A842CBEF875003D5774 /* Scenes */,
+				A5C46A882CBEF8A9003D5774 /* AppData */,
+				A5C46A892CBEF8B1003D5774 /* Models */,
+				A5C46A872CBEF89D003D5774 /* Extensions */,
 				A5A91AD22CBC1BC60096C858 /* Assets.xcassets */,
 				A5A91AD32CBC1BC60096C858 /* Info.plist */,
 				A5A91AD52CBC1BC60096C858 /* LaunchScreen.storyboard */,
@@ -200,9 +191,9 @@
 		A5C46A862CBEF892003D5774 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A5C46A962CBFA7A3003D5774 /* NoteLayout.swift */,
 				A5C46A982CBFA7C4003D5774 /* NoteViewCell.swift */,
 				A5C46A9A2CBFA7DB003D5774 /* NoteViewCellModel.swift */,
+				A5C46A962CBFA7A3003D5774 /* NoteLayout.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -210,6 +201,7 @@
 		A5C46A872CBEF89D003D5774 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A52DB5152CC2F93C0047359E /* UIColor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
