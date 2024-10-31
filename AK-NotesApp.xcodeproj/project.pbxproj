@@ -25,6 +25,8 @@
 		A5C46A972CBFA7A3003D5774 /* NoteLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C46A962CBFA7A3003D5774 /* NoteLayout.swift */; };
 		A5C46A992CBFA7C4003D5774 /* NoteViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C46A982CBFA7C4003D5774 /* NoteViewCell.swift */; };
 		A5C46A9B2CBFA7DB003D5774 /* NoteViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C46A9A2CBFA7DB003D5774 /* NoteViewCellModel.swift */; };
+		A5C5A29E2CD41B3B00468969 /* NotesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5A29D2CD41B3B00468969 /* NotesData.swift */; };
+		A5C918862CD0606B001532CC /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C918852CD0606B001532CC /* Note.swift */; };
 		B13AA1E1B3B99CE08A187965 /* Pods_AK_NotesAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22699AEEEFE4607466C34796 /* Pods_AK_NotesAppTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +74,8 @@
 		A5C46A962CBFA7A3003D5774 /* NoteLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteLayout.swift; sourceTree = "<group>"; };
 		A5C46A982CBFA7C4003D5774 /* NoteViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewCell.swift; sourceTree = "<group>"; };
 		A5C46A9A2CBFA7DB003D5774 /* NoteViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewCellModel.swift; sourceTree = "<group>"; };
+		A5C5A29D2CD41B3B00468969 /* NotesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesData.swift; sourceTree = "<group>"; };
+		A5C918852CD0606B001532CC /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		B7DEB5354F020F0186C4F25E /* Pods-AK-NotesApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AK-NotesApp.release.xcconfig"; path = "Target Support Files/Pods-AK-NotesApp/Pods-AK-NotesApp.release.xcconfig"; sourceTree = "<group>"; };
 		C1ABB3FB67F0A6C5F84D7F1A /* Pods_AK_NotesApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AK_NotesApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFB16EF6E4E37760909F9923 /* Pods-AK-NotesApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AK-NotesApp.debug.xcconfig"; path = "Target Support Files/Pods-AK-NotesApp/Pods-AK-NotesApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -192,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				A5C46A982CBFA7C4003D5774 /* NoteViewCell.swift */,
+				A5C918852CD0606B001532CC /* Note.swift */,
 				A5C46A9A2CBFA7DB003D5774 /* NoteViewCellModel.swift */,
 				A5C46A962CBFA7A3003D5774 /* NoteLayout.swift */,
 			);
@@ -209,6 +214,7 @@
 		A5C46A882CBEF8A9003D5774 /* AppData */ = {
 			isa = PBXGroup;
 			children = (
+				A5C5A29D2CD41B3B00468969 /* NotesData.swift */,
 			);
 			path = AppData;
 			sourceTree = "<group>";
@@ -494,6 +500,7 @@
 				A5A91ADB2CBC1BC60096C858 /* AppDelegate.swift in Sources */,
 				A5C46A952CBF9EFD003D5774 /* NotesScreenViewModel.swift in Sources */,
 				A5C46A932CBF9EF5003D5774 /* NoteScreenViewController.swift in Sources */,
+				A5C5A29E2CD41B3B00468969 /* NotesData.swift in Sources */,
 				A5C46A9B2CBFA7DB003D5774 /* NoteViewCellModel.swift in Sources */,
 				A5A91ADC2CBC1BC60096C858 /* SceneDelegate.swift in Sources */,
 				A5C46A8F2CBF9ED3003D5774 /* CreateNoteViewController.swift in Sources */,
@@ -501,6 +508,7 @@
 				A5C46A8B2CBF9E52003D5774 /* Note.swift in Sources */,
 				A5C46A992CBFA7C4003D5774 /* NoteViewCell.swift in Sources */,
 				A5C46A972CBFA7A3003D5774 /* NoteLayout.swift in Sources */,
+				A5C918862CD0606B001532CC /* Note.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

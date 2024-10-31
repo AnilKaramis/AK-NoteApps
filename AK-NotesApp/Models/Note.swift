@@ -8,7 +8,7 @@
 import Foundation
 
 struct Note {
-    let tittle: String
+    let title: String
     let text: String
     let dateCreated: String
     let dateModified: String
