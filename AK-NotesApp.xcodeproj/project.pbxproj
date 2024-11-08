@@ -28,6 +28,8 @@
 		A5C5A29E2CD41B3B00468969 /* NotesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5A29D2CD41B3B00468969 /* NotesData.swift */; };
 		A5C918862CD0606B001532CC /* Notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C918852CD0606B001532CC /* Notes.swift */; };
 		A5E99F102CDD4516003BF7B0 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E99F0F2CDD4516003BF7B0 /* Date.swift */; };
+		A5E99F142CDDDDC6003BF7B0 /* Notes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A5E99F122CDDDDC6003BF7B0 /* Notes.xcdatamodeld */; };
+		A5E99F172CDE1366003BF7B0 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E99F162CDE1366003BF7B0 /* CoreDataManager.swift */; };
 		B13AA1E1B3B99CE08A187965 /* Pods_AK_NotesAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22699AEEEFE4607466C34796 /* Pods_AK_NotesAppTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +80,8 @@
 		A5C5A29D2CD41B3B00468969 /* NotesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesData.swift; sourceTree = "<group>"; };
 		A5C918852CD0606B001532CC /* Notes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notes.swift; sourceTree = "<group>"; };
 		A5E99F0F2CDD4516003BF7B0 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		A5E99F132CDDDDC6003BF7B0 /* Notes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Notes.xcdatamodel; sourceTree = "<group>"; };
+		A5E99F162CDE1366003BF7B0 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		B7DEB5354F020F0186C4F25E /* Pods-AK-NotesApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AK-NotesApp.release.xcconfig"; path = "Target Support Files/Pods-AK-NotesApp/Pods-AK-NotesApp.release.xcconfig"; sourceTree = "<group>"; };
 		C1ABB3FB67F0A6C5F84D7F1A /* Pods_AK_NotesApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AK_NotesApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFB16EF6E4E37760909F9923 /* Pods-AK-NotesApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AK-NotesApp.debug.xcconfig"; path = "Target Support Files/Pods-AK-NotesApp/Pods-AK-NotesApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -155,6 +159,7 @@
 		A5A91ADA2CBC1BC60096C858 /* AK-NotesApp */ = {
 			isa = PBXGroup;
 			children = (
+				A5E99F112CDDDD89003BF7B0 /* Data */,
 				A5C46A862CBEF892003D5774 /* Views */,
 				A5C46A852CBEF88B003D5774 /* Application */,
 				A5C46A842CBEF875003D5774 /* Scenes */,
@@ -246,6 +251,23 @@
 				A5C46A902CBF9EE1003D5774 /* CreateNoteViewModel.swift */,
 			);
 			path = CreateNote;
+			sourceTree = "<group>";
+		};
+		A5E99F112CDDDD89003BF7B0 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				A5E99F152CDE134D003BF7B0 /* Managers */,
+				A5E99F122CDDDDC6003BF7B0 /* Notes.xcdatamodeld */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		A5E99F152CDE134D003BF7B0 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				A5E99F162CDE1366003BF7B0 /* CoreDataManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		D67E988552891134FB2041C9 /* Pods */ = {
@@ -500,6 +522,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5C46A912CBF9EE1003D5774 /* CreateNoteViewModel.swift in Sources */,
+				A5E99F142CDDDDC6003BF7B0 /* Notes.xcdatamodeld in Sources */,
 				A5A91ADB2CBC1BC60096C858 /* AppDelegate.swift in Sources */,
 				A5C46A952CBF9EFD003D5774 /* NotesScreenViewModel.swift in Sources */,
 				A5C46A932CBF9EF5003D5774 /* NoteScreenViewController.swift in Sources */,
@@ -512,6 +535,7 @@
 				A5C46A8B2CBF9E52003D5774 /* Note.swift in Sources */,
 				A5C46A992CBFA7C4003D5774 /* NoteViewCell.swift in Sources */,
 				A5C46A972CBFA7A3003D5774 /* NoteLayout.swift in Sources */,
+				A5E99F172CDE1366003BF7B0 /* CoreDataManager.swift in Sources */,
 				A5C918862CD0606B001532CC /* Notes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -855,6 +879,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A5E99F122CDDDDC6003BF7B0 /* Notes.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A5E99F132CDDDDC6003BF7B0 /* Notes.xcdatamodel */,
+			);
+			currentVersion = A5E99F132CDDDDC6003BF7B0 /* Notes.xcdatamodel */;
+			path = Notes.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A5A91A7A2CBC175E0096C858 /* Project object */;
 }

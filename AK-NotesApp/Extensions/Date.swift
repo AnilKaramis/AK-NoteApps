@@ -7,6 +7,8 @@
 
 import Foundation
 
+///Burda yazilan Date extension icinde if Calendar.current kismi eger fonksiyon cagirildiginda tarihi bugunse o zaman saati goster demek. Degilse o zamanki tarihi goster demek.
+
 extension Date {
     func format() -> String {
         let dateFormatter = DateFormatter()
