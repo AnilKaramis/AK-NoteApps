@@ -11,6 +11,7 @@ import CoreData
 final class CoreDataManager {
     
     static let shared = CoreDataManager(modelName: "Notes")
+    
     private let persistentContainer: NSPersistentContainer
     private var context = NSManagedObjectContext {
         return persistentContainer.viewContext
@@ -72,6 +73,3 @@ extension CoreDataManager {
     }
     
 }
-
-}
-

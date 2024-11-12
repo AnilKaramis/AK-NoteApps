@@ -8,50 +8,98 @@
 import Foundation
 import UIKit
 
-class NotesScreenViewModel {
-        
-        var didGoToNextScreen: ((UIViewController) -> Void)?
-        
-        private(set) var textForHeaderLabel = "Notes"
-        
-        let cellViewModels: [NoteViewCellViewModel]
-        let notes = [Note(title: "Title 1", text: """
-    First example not for app. So I want to improve about Notes.app but I must investigate about app. 
-    """, dateCreated: "Dec 12, 2022", dateModified: "Dec 12, 2022"),
-                     Note(title: "Title 2", text: "some text 1", dateCreated: "Feb 18, 2004", dateModified: "Dec 12, 2022"),
-                     Note(title: "Title 2", text: "some text 1", dateCreated: "Feb 18, 2004", dateModified: ""),
-                     Note(title: "Title 2", text: "some text 1", dateCreated: "Feb 18, 2004", dateModified: "Dec 12, 2022"),
-                     Note(title: "Title 2", text: "some text 1", dateCreated: "Feb 18, 2004", dateModified: ""),
-                     Note(title: "Title 2", text: "some text 1", dateCreated: "Feb 18, 2004", dateModified: ""),
-                     Note(title: "Title 2", text: "some text 1", dateCreated: "Feb 18, 2004", dateModified: "Dec 12, 2022"),
-                     Note(title: "Title 2", text: "some text 1", dateCreated: "Feb 18, 2004", dateModified: ""),
-                     Note(title: "Title 2", text: "some text 1", dateCreated: "Feb 18, 2004", dateModified: "Dec 12, 2022"),
-                     Note(title: "Title 2", text: "some text 1", dateCreated: "Feb 18, 2004", dateModified: ""),
-                     Note(title: "Title 2", text: "some text 1", dateCreated: "Feb 18, 2004", dateModified: ""),
-                     Note(title: "Title 2", text: "some text 1", dateCreated: "Feb 18, 2004", dateModified: "Dec 12, 2022"),
-                     Note(title: "Title 2", text: "some text 1", dateCreated: "Feb 18, 2004", dateModified: ""),
-                     Note(title: "Title 2", text: "some text 1", dateCreated: "Feb 18, 2004", dateModified: "Dec 12, 2022"),
-                     Note(title: "Title 2", text: "some text 1", dateCreated: "Feb 18, 2004", dateModified: ""),
-                     Note(title: "Title 2", text: "some text 1", dateCreated: "Feb 18, 2004", dateModified: "Dec 12, 2022"),
-                     Note(title: "Title 2", text: "some text 1", dateCreated: "Feb 18, 2004", dateModified: "Dec 12, 2022"),
-                     Note(title: "Title 2", text: "some text 1", dateCreated: "Feb 18, 2004", dateModified: "Dec 12, 2022"),
-                     Note(title: "Title 2", text: "some text 1", dateCreated: "Feb 18, 2004", dateModified: "Dec 12, 2022"),
-                     Note(title: "Title 2", text: "some text 1", dateCreated: "Feb 18, 2004", dateModified: "Dec 12, 2022"),
-                    ]
-        
-        init() {
-            cellViewModels = notes.map { NoteViewCellViewModel(titleNote: $0.title, textNote: $0.text, dateCreated: $0.dateCreated, dateModified: $0.dateModified) }
-        }
-        
-        func goToCreateNote() {
-            let viewModel = CreateNoteViewModel(note: nil)
-            let viewController = CreateNoteViewController(with: viewModel)
-            didGoToNextScreen?(viewController)
-        }
-        
-        func goToEditNote(at index: Int) {
-            let viewModel = CreateNoteViewModel(note: notes[index])
-            let viewController = CreateNoteViewController(with: viewModel)
-            didGoToNextScreen?(viewController)
+protocol NotesScreenDelegate: AnyObject {
+    func refreshNote(with id: ObjectIdentifier)
+    func deleteNote(with id: ObjectIdentifier)
+}
+
+final class NotesScreenViewModel {
+    
+    // MARK: - Public properties
+    
+    var didGoToNextScreen: ((UIViewController) -> Void)?
+    var didUpdateCollection: (() -> Void)?
+    
+    var cellViewModels: [NoteViewCellViewModel] = []
+    
+    // MARK: - Private properties
+    
+    private var notes: [Note] = [] {
+        didSet {
+            cellViewModels = notes.map { NoteViewCellViewModel(titleNote: $0.title,
+                                                               textNote: $0.content,
+                                                               dateCreated: $0.dateCreated,
+                                                               dateModified: $0.dateModified) }
         }
     }
+    private(set) var textForHeaderLabel = "Notes"
+    
+    // MARK: - Inits
+    
+    init() {
+        getNotes()
+    }
+    
+    // MARK: - Public methods
+    
+    func createNote() {
+        let newNote = CoreDataManager.shared.createNote()
+        notes.insert(newNote, at: 0)
+        goToEditNote(newNote)
+    }
+    
+    func editNote(at index: Int) {
+        let note = notes[index]
+        goToEditNote(note)
+    }
+    
+    // MARK: - Private methods
+    
+    private func indexForNote(id: ObjectIdentifier) -> Int {
+        guard let index = notes.firstIndex(where: { $0.id == id }) else { return 0 }
+        return index
+    }
+    
+    private func goToEditNote(_ note: Note) {
+        let viewModel = EditNoteViewModel(note: note)
+        viewModel.delegate = self
+        let viewController = EditNoteViewController(with: viewModel)
+        didGoToNextScreen?(viewController)
+    }
+    
+    private func updateNote(at index: Int) {
+        let note = notes[index]
+        cellViewModels[index] = NoteViewCellViewModel(titleNote: note.title,
+                                                      textNote: note.content,
+                                                      dateCreated: note.dateCreated,
+                                                      dateModified: note.dateModified)
+    }
+    
+    private func getNotes() {
+        CoreDataManager.shared.fetchNotes { [weak self] result in
+            switch result {
+            case .success(let notes):
+                self?.notes = notes
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+}
+
+// MARK: - NotesScreenDelegate
+
+extension NotesScreenViewModel: NotesScreenDelegate {
+    func refreshNote(with id: ObjectIdentifier) {
+        let index = indexForNote(id: id)
+        updateNote(at: index)
+        didUpdateCollection?()
+    }
+    
+    func deleteNote(with id: ObjectIdentifier) {
+        let index = indexForNote(id: id)
+        notes.remove(at: index)
+        didUpdateCollection?()
+    }
+}
+
