@@ -21,6 +21,7 @@ final class EditNoteViewModel {
     // MARK: - Private properties
     
     private let note: Note
+    private var isEdited = true
     private let placeholderForContent = "Your new note..."
     
     // MARK: - Inits
@@ -41,6 +42,8 @@ final class EditNoteViewModel {
     
     func shouldSaveNote(with title: String?, and text: String?) {
         guard let title = title, let text = text else { return }
+//        guard let noteTitle = note.title, let noteContent = note.content else {return }
+//        guard let newTitle = title, let newText = text else {return}
         
         if (text.isEmpty || text == placeholderForContent) && title.isEmpty {
             deleteNote()
