@@ -1,5 +1,5 @@
 //
-//  NoteLayout.swift
+//  NoteGalleryLayout.swift
 //  AK-NotesApp
 //
 //  Created by AnılKaramış on 16.10.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class NoteLayout: UICollectionViewFlowLayout {
+final class NoteGalleryLayout: UICollectionViewFlowLayout {
     
     override func prepare() {
         super.prepare()
