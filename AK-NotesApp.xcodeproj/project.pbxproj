@@ -17,6 +17,8 @@
 		A5A91ADE2CBC1BC60096C858 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5A91AD22CBC1BC60096C858 /* Assets.xcassets */; };
 		A5A91AE02CBC1BC60096C858 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5A91AD52CBC1BC60096C858 /* LaunchScreen.storyboard */; };
 		A5A91AE42CBC1BC60096C858 /* AK_NotesAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A91AE22CBC1BC60096C858 /* AK_NotesAppTests.swift */; };
+		A5C4320C2CEB080700A341F6 /* NoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C4320B2CEB080700A341F6 /* NoteService.swift */; };
+		A5C4320E2CEB20F400A341F6 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C4320D2CEB20F400A341F6 /* String.swift */; };
 		A5C46A8F2CBF9ED3003D5774 /* EditNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C46A8E2CBF9ED3003D5774 /* EditNoteViewController.swift */; };
 		A5C46A912CBF9EE1003D5774 /* EditNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C46A902CBF9EE1003D5774 /* EditNoteViewModel.swift */; };
 		A5C46A932CBF9EF5003D5774 /* NoteScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C46A922CBF9EF5003D5774 /* NoteScreenViewController.swift */; };
@@ -57,7 +59,6 @@
 		775077AE801C4AD181B617ED /* Pods-AK-NotesApp-AK-NotesAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AK-NotesApp-AK-NotesAppUITests.release.xcconfig"; path = "Target Support Files/Pods-AK-NotesApp-AK-NotesAppUITests/Pods-AK-NotesApp-AK-NotesAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		797B5023C8A29A61BAD05326 /* Pods_AK_NotesApp_AK_NotesAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AK_NotesApp_AK_NotesAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A52DB5152CC2F93C0047359E /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
-		A58643FA2CE3A6D1000E05AA /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A5A91A822CBC175E0096C858 /* AK-NotesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AK-NotesApp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5A91A982CBC17600096C858 /* AK-NotesAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AK-NotesAppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5A91AA22CBC17600096C858 /* AK-NotesAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AK-NotesAppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +70,8 @@
 		A5A91AD42CBC1BC60096C858 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5A91AD82CBC1BC60096C858 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A5A91AE22CBC1BC60096C858 /* AK_NotesAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AK_NotesAppTests.swift; sourceTree = "<group>"; };
+		A5C4320B2CEB080700A341F6 /* NoteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteService.swift; sourceTree = "<group>"; };
+		A5C4320D2CEB20F400A341F6 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		A5C46A8E2CBF9ED3003D5774 /* EditNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNoteViewController.swift; sourceTree = "<group>"; };
 		A5C46A902CBF9EE1003D5774 /* EditNoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNoteViewModel.swift; sourceTree = "<group>"; };
 		A5C46A922CBF9EF5003D5774 /* NoteScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteScreenViewController.swift; sourceTree = "<group>"; };
@@ -205,7 +208,6 @@
 				A5C918852CD0606B001532CC /* Notes.swift */,
 				A5C46A9A2CBFA7DB003D5774 /* NoteViewCellModel.swift */,
 				A5C46A962CBFA7A3003D5774 /* NoteLayout.swift */,
-				A58643FA2CE3A6D1000E05AA /* MyPlayground.playground */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -215,6 +217,7 @@
 			children = (
 				A52DB5152CC2F93C0047359E /* UIColor.swift */,
 				A5E99F0F2CDD4516003BF7B0 /* Date.swift */,
+				A5C4320D2CEB20F400A341F6 /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 			isa = PBXGroup;
 			children = (
 				A5E99F162CDE1366003BF7B0 /* CoreDataManager.swift */,
+				A5C4320B2CEB080700A341F6 /* NoteService.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -523,6 +527,7 @@
 				A5C46A912CBF9EE1003D5774 /* EditNoteViewModel.swift in Sources */,
 				A5E99F142CDDDDC6003BF7B0 /* Notes.xcdatamodeld in Sources */,
 				A5A91ADB2CBC1BC60096C858 /* AppDelegate.swift in Sources */,
+				A5C4320C2CEB080700A341F6 /* NoteService.swift in Sources */,
 				A5C46A952CBF9EFD003D5774 /* NotesScreenViewModel.swift in Sources */,
 				A5C46A932CBF9EF5003D5774 /* NoteScreenViewController.swift in Sources */,
 				A5C5A29E2CD41B3B00468969 /* NotesData.swift in Sources */,
@@ -533,6 +538,7 @@
 				A5E99F102CDD4516003BF7B0 /* Date.swift in Sources */,
 				A5C46A992CBFA7C4003D5774 /* NoteViewCell.swift in Sources */,
 				A5C46A972CBFA7A3003D5774 /* NoteLayout.swift in Sources */,
+				A5C4320E2CEB20F400A341F6 /* String.swift in Sources */,
 				A5E99F172CDE1366003BF7B0 /* CoreDataManager.swift in Sources */,
 				A5C918862CD0606B001532CC /* Notes.swift in Sources */,
 			);
