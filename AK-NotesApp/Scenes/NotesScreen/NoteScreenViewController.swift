@@ -17,6 +17,8 @@ class NotesScreenViewController: UIViewController {
     
     private let listNotesButton = UIButton(type: .system)
     private let galleryNotesButton = UIButton(type: .system)
+    
+    private let optionsMenuToolbar = UIToolbar()
 
     lazy private var notesCollection: UICollectionView = {
         let layout = viewModel.noteLayoutType.layout
@@ -84,6 +86,11 @@ class NotesScreenViewController: UIViewController {
         viewModel.swipeNote(with: indexPath)
     }
     
+    @objc
+    private func handleDeleteNoteFromToolbar() {
+        print("DELETE FROM TOOLBAR")
+    }
+    
     // MARK: - Private methods
     
     private func deleteNoteFromHomeScreen(_ indexPath: IndexPath) {
@@ -101,6 +108,7 @@ class NotesScreenViewController: UIViewController {
         setupNotesCollection()
         setupCreateNoteButton()
         setupDeleteSwipeGesture()
+        setupOptionsMenuToolbar()
     }
     
     private func setupSuperView() {
@@ -178,6 +186,55 @@ class NotesScreenViewController: UIViewController {
         }
     }
     
+    private func setupOptionsMenuToolbar() {
+        view.addSubview(optionsMenuToolbar)
+        
+        let width = view.bounds.width * 0.6
+        let height: CGFloat = 48
+        
+        optionsMenuToolbar.frame.size.width = width
+        optionsMenuToolbar.frame.size.height = height
+        optionsMenuToolbar.frame.origin.x = view.bounds.width / 2 - width / 2
+        optionsMenuToolbar.frame.origin.y = view.bounds.height * 0.88
+        optionsMenuToolbar.layer.masksToBounds = true
+        optionsMenuToolbar.layer.cornerRadius = 10
+        
+        let flexibleSpaceBarButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let deleteBarButton = UIBarButtonItem(customView: setupDeleteNoteStackView())
+        optionsMenuToolbar.items = [flexibleSpaceBarButton, deleteBarButton, flexibleSpaceBarButton]
+    }
+    
+    private func setupDeleteNoteStackView() -> UIStackView {
+        let stackView = UIStackView(arrangedSubviews: [setupDeleteNoteImageView(), setupDeleteNoteLabel()])
+        
+        stackView.axis = .horizontal
+        stackView.spacing = 8
+        
+        let deleteTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDeleteNoteFromToolbar))
+        stackView.addGestureRecognizer(deleteTapGesture)
+        
+        return stackView
+    }
+    
+    private func setupDeleteNoteImageView() -> UIImageView {
+        let imageView = UIImageView()
+        
+        imageView.image = UIImage(systemName: "trash")
+        imageView.tintColor = .systemRed
+        
+        return imageView
+    }
+    
+    private func setupDeleteNoteLabel() -> UILabel {
+        let label = UILabel()
+        
+        label.text = "Delete"
+        label.textColor = .systemRed
+        label.font = UIFont.systemFont(ofSize: 17)
+        
+        return label
+    }
+    
     private func setupDeleteSwipeGesture() {
         let deleteSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleDeleteSwipe))
         deleteSwipeGesture.direction = .left
@@ -213,61 +270,4 @@ extension NotesScreenViewController: UICollectionViewDataSource {
 extension NotesScreenViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewModel.editNote(at: indexPath.item)
-    }
-}
-
-// MARK: - Building ViewModel
-
-private extension NotesScreenViewController {
-    private func bindToViewModel() {
-        viewModel.didGoToNextScreen = { [weak self] viewController in
-            self?.navigationController?.pushViewController(viewController, animated: true)
-        }
-        
-        viewModel.didUpdateCollection = { [weak self] in
-            self?.notesCollection.reloadData()
-        }
-        
-        viewModel.didUpdateHeader = { [weak self] header in
-            self?.headerLabel.text = header
-        }
-        
-        viewModel.didUpdateNoteLayout = { [weak self] noteLayout in
-            UIView.animate(withDuration: 0.5) {
-                self?.notesCollection.collectionViewLayout = noteLayout.layout
-            }
-        }
-        
-        viewModel.showReceivedError = { [weak self] errorDescription in
-            let alertController = UIAlertController(title: "Error", message: errorDescription, preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .default))
-            self?.present(alertController, animated: true)
-        }
-        
-        viewModel.showAnimationSwipeCell = { [weak self] indexPath in
-            UIView.animateKeyframes(withDuration: 0.5, delay: 0) {
-                UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5) {
-                    self?.notesCollection.cellForItem(at: indexPath)?.frame.origin.x -= 30
-                }
-                UIView.addKeyframe(withRelativeStartTime: 0.25, relativeDuration: 0.5) {
-                    self?.notesCollection.cellForItem(at: indexPath)?.frame.origin.x += 30
-                }
-            }
-        }
-        
-        viewModel.showDeleteNoteAlert = { [weak self] title, message, indexPath in
-            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            alertController.overrideUserInterfaceStyle = .dark
-
-            let deleteNoteAction = UIAlertAction(title: "Delete", style: .destructive) {_ in
-                self?.deleteNoteFromHomeScreen(indexPath)
-            }
-            let closeAlertAction = UIAlertAction(title: "Cancel", style: .default)
-
-            alertController.addAction(deleteNoteAction)
-            alertController.addAction(closeAlertAction)
-
-            self?.present(alertController, animated: true)
-        }
-    }
-}
+ 
