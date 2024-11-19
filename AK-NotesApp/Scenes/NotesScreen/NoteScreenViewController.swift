@@ -88,14 +88,14 @@ class NotesScreenViewController: UIViewController {
     
     @objc
     private func handleDeleteNoteFromToolbar() {
-        print("DELETE FROM TOOLBAR")
+        optionsMenuToolbar.isHidden = true
+        viewModel.shouldDeleteNote()
     }
     
     // MARK: - Private methods
     
-    private func deleteNoteFromHomeScreen(_ indexPath: IndexPath) {
-        viewModel.deleteItemFromArray(with: indexPath.item)
-        notesCollection.deleteItems(at: [indexPath])
+    private func deleteNote() {
+        viewModel.deleteNoteFromHomeScreen()
     }
     
     //  MARK: - Setup
@@ -107,7 +107,6 @@ class NotesScreenViewController: UIViewController {
         setupGalleryNotesButton()
         setupNotesCollection()
         setupCreateNoteButton()
-        setupDeleteSwipeGesture()
         setupOptionsMenuToolbar()
     }
     
@@ -164,6 +163,10 @@ class NotesScreenViewController: UIViewController {
         notesCollection.delegate = self
         notesCollection.register(NoteViewCell.self, forCellWithReuseIdentifier: NoteViewCell.identifier)
         
+        let deleteSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleDeleteSwipe))
+        deleteSwipeGesture.direction = .left
+        notesCollection.addGestureRecognizer(deleteSwipeGesture)
+        
         notesCollection.snp.makeConstraints { make in
             make.top.equalTo(headerLabel.snp.bottom).offset(20)
             make.leading.trailing.bottom.equalToSuperview()
@@ -198,6 +201,7 @@ class NotesScreenViewController: UIViewController {
         optionsMenuToolbar.frame.origin.y = view.bounds.height * 0.88
         optionsMenuToolbar.layer.masksToBounds = true
         optionsMenuToolbar.layer.cornerRadius = 10
+        optionsMenuToolbar.isHidden = true
         
         let flexibleSpaceBarButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let deleteBarButton = UIBarButtonItem(customView: setupDeleteNoteStackView())
@@ -235,12 +239,6 @@ class NotesScreenViewController: UIViewController {
         return label
     }
     
-    private func setupDeleteSwipeGesture() {
-        let deleteSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleDeleteSwipe))
-        deleteSwipeGesture.direction = .left
-        notesCollection.addGestureRecognizer(deleteSwipeGesture)
-    }
-    
     private func setupBackBarButtonItem() {
         let backBarButtonItem = UIBarButtonItem(title: "Notes", style: .plain, target: self, action: nil)
         backBarButtonItem.tintColor = .appColor
@@ -270,4 +268,71 @@ extension NotesScreenViewController: UICollectionViewDataSource {
 extension NotesScreenViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewModel.editNote(at: indexPath.item)
- 
+    }
+}
+
+// MARK: - Building ViewModel
+
+private extension NotesScreenViewController {
+    private func bindToViewModel() {
+        viewModel.didGoToNextScreen = { [weak self] viewController in
+            self?.navigationController?.pushViewController(viewController, animated: true)
+        }
+        
+        viewModel.didUpdateCollection = { [weak self] in
+            self?.notesCollection.reloadData()
+        }
+        
+        viewModel.didUpdateHeader = { [weak self] header in
+            self?.headerLabel.text = header
+        }
+        
+        viewModel.didDeleteCollectionItems = { [weak self] indexes in
+            self?.notesCollection.deleteItems(at: indexes)
+        }
+        
+        viewModel.didUpdateNoteLayout = { [weak self] noteLayout in
+            UIView.animate(withDuration: 0.5) {
+                self?.notesCollection.collectionViewLayout = noteLayout.layout
+            }
+        }
+        
+        viewModel.showReceivedError = { [weak self] errorDescription in
+            let alertController = UIAlertController(title: "Error", message: errorDescription, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .default))
+            self?.present(alertController, animated: true)
+        }
+        
+        viewModel.didSwipeCell = { [weak self] indexPath in
+            self?.optionsMenuToolbar.isHidden = !(self?.optionsMenuToolbar.isHidden ?? true)
+            self?.createNoteButton.isHidden = !(self?.createNoteButton.isHidden ?? false)
+            
+            UIView.animateKeyframes(withDuration: 0.5, delay: 0) {
+                UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5) {
+                    self?.notesCollection.cellForItem(at: indexPath)?.frame.origin.x -= 30
+                }
+                UIView.addKeyframe(withRelativeStartTime: 0.25, relativeDuration: 0.5) {
+                    self?.notesCollection.cellForItem(at: indexPath)?.frame.origin.x += 30
+                }
+            }
+        }
+        
+        viewModel.showDeleteNoteAlert = { [weak self] title, message in
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+            alertController.overrideUserInterfaceStyle = .dark
+
+            let deleteNoteAction = UIAlertAction(title: "Delete Note", style: .destructive) {_ in
+                self?.deleteNote()
+                self?.createNoteButton.isHidden = false
+            }
+            let closeAlertAction = UIAlertAction(title: "Cancel", style: .cancel) {_ in
+                self?.createNoteButton.isHidden = false
+            }
+
+            alertController.addAction(deleteNoteAction)
+            alertController.addAction(closeAlertAction)
+
+            self?.present(alertController, animated: true)
+        }
+    }
+}
