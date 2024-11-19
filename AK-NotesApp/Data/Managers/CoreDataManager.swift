@@ -10,7 +10,7 @@ import CoreData
 
 final class CoreDataManager {
     
-    static let shared = CoreDataManager(modelName: "Notes")
+    static let shared = CoreDataManager(modelName: "NewNotes")
     
     private let persistentContainer: NSPersistentContainer
     var context: NSManagedObjectContext {
