@@ -12,16 +12,24 @@ final class NotesScreenViewModel {
     
     // MARK: - Public properties
     
-    var didGoToNextScreen: ((UIViewController) -> Void)?
     var didUpdateCollection: (() -> Void)?
     var didUpdateHeader: ((String) -> Void)?
-    var didUpdateNoteLayout: ((UICollectionViewFlowLayout) -> Void)?
+    var didUpdateNoteLayout: ((NoteLayoutType) -> Void)?
+
     var showReceivedError: ((String) -> Void)?
+    var showAnimationSwipeCell: ((IndexPath) -> Void)?
+    var showDeleteNoteAlert: ((String, String, IndexPath) -> Void)?
+    
+    var didGoToNextScreen: ((UIViewController) -> Void)?
     
     var cellViewModels: [NoteViewCellViewModel] = []
     
     // MARK: - Private properties
-    private var noteLayoutType = NoteLayoutType.gallery
+    
+    private(set) var noteLayoutType = NoteLayoutType.list
+    
+    private let titleDeleteAlert = "Delete a note"
+    private let messageDeleteAlert = "Are you sure you want to delete note?"
     
     private var notes: [Note] = [] {
         didSet {
@@ -49,14 +57,31 @@ final class NotesScreenViewModel {
         goToEditNote(note)
     }
     
-    func getLayout() -> UICollectionViewFlowLayout {
-        return noteLayoutType.layout
+    func deleteItemFromArray(with index: Int) {
+        notes.remove(at: index)
+    }
+    
+    func setListLayout() {
+        noteLayoutType = .list
+        didUpdateNoteLayout?(noteLayoutType)
+    }
+    
+    func setGalleryLayout() {
+        noteLayoutType = .gallery
+        didUpdateNoteLayout?(noteLayoutType)
     }
     
     func updateHeader() {
         let numberOfNotes = notes.count
         let headerText = "\(numberOfNotes) \(numberOfNotes == 1 ? "Note" : "Notes")"
         didUpdateHeader?(headerText)
+    }
+    
+    func swipeNote(with indexPath: IndexPath?) {
+        guard let indexPath = indexPath else { return }
+        
+        showAnimationSwipeCell?(indexPath)
+        showDeleteNoteAlert?(titleDeleteAlert, messageDeleteAlert, indexPath)
     }
     
     // MARK: - Private methods
@@ -75,10 +100,9 @@ final class NotesScreenViewModel {
     
     private func updateNote(at index: Int) {
         let note = notes[index]
-        cellViewModels[index] = NoteViewCellViewModel(titleNote: note.title,
-                                                      textNote: note.content,
-                                                      dateCreated: note.dateCreated?.format(),
-                                                      dateModified: note.dateModified?.format())
+        cellViewModels[index].updateData(titleNote: note.title,
+                                         textNote: note.content,
+                                         dateModified: note.dateModified?.format())
     }
     
     private func goToEditNote(_ note: Note?) {
@@ -132,3 +156,4 @@ extension NotesScreenViewModel: EditNoteViewModelDelegate {
         showReceivedError?(desc)
     }
 }
+
