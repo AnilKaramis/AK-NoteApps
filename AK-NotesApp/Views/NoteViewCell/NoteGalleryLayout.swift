@@ -7,12 +7,11 @@
 
 import UIKit
 
-final class NoteGalleryLayout: UICollectionViewFlowLayout {
-    
+class NoteGalleryLayout: UICollectionViewFlowLayout {
     override func prepare() {
         super.prepare()
         
-        guard let collectionView = collectionView else {return}
+        guard let collectionView = collectionView else { return }
         
         scrollDirection = .vertical
         

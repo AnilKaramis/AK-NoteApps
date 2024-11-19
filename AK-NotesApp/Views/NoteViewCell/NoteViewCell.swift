@@ -6,11 +6,12 @@
 //
 
 import UIKit
-import SnapKit
 
 final class NoteViewCell: UICollectionViewCell {
     
     static let identifier = "NoteViewCell"
+    
+    // MARK: - Private properties
     
     private let titleNoteLabel = UILabel()
     private let textNoteLabel = UILabel()
@@ -18,6 +19,8 @@ final class NoteViewCell: UICollectionViewCell {
     private let separatorView = UIView()
     private let dateCreatedNoteLabel = UILabel()
     private let dateModifiedNoteLabel = UILabel()
+    
+    // MARK: - Lifecycle methods
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,12 +31,16 @@ final class NoteViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Configure
+    
     func configure(with viewModel: NoteViewCellViewModel) {
         titleNoteLabel.text = viewModel.titleNote
         textNoteLabel.text = viewModel.textNote
         dateCreatedNoteLabel.text = viewModel.dateCreated
         dateModifiedNoteLabel.text = viewModel.dateModified
     }
+    
+    // MARK: - Setup
     
     private func setup() {
         setupSuperView()
@@ -83,11 +90,14 @@ final class NoteViewCell: UICollectionViewCell {
         
         dateModifiedNoteLabel.textColor = .lightGray
         dateModifiedNoteLabel.textAlignment = .left
+        dateModifiedNoteLabel.adjustsFontSizeToFitWidth = true
+        dateModifiedNoteLabel.minimumScaleFactor = 0.5
         dateModifiedNoteLabel.font = UIFont.systemFont(ofSize: 10)
         
         dateModifiedNoteLabel.snp.makeConstraints { make in
             make.leading.equalTo(titleNoteLabel)
             make.bottom.equalToSuperview().inset(8)
+            make.width.equalToSuperview().multipliedBy(0.38)
         }
     }
     
@@ -96,11 +106,14 @@ final class NoteViewCell: UICollectionViewCell {
         
         dateCreatedNoteLabel.textColor = .lightGray
         dateCreatedNoteLabel.textAlignment = .right
+        dateCreatedNoteLabel.adjustsFontSizeToFitWidth = true
+        dateCreatedNoteLabel.minimumScaleFactor = 0.5
         dateCreatedNoteLabel.font = UIFont.systemFont(ofSize: 10)
         
         dateCreatedNoteLabel.snp.makeConstraints { make in
             make.trailing.equalTo(titleNoteLabel)
             make.bottom.equalTo(dateModifiedNoteLabel)
+            make.width.equalToSuperview().multipliedBy(0.38)
         }
     }
     
@@ -115,3 +128,4 @@ final class NoteViewCell: UICollectionViewCell {
         }
     }
 }
+

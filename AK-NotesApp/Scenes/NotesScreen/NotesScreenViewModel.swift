@@ -156,4 +156,3 @@ extension NotesScreenViewModel: EditNoteViewModelDelegate {
         showReceivedError?(desc)
     }
 }
-
