@@ -207,8 +207,8 @@
 			isa = PBXGroup;
 			children = (
 				A5A91AD52CBC1BC60096C858 /* LaunchScreen.storyboard */,
-				A5C46A8D2CBF9EC1003D5774 /* EditNote */,
 				A5C46A8C2CBF9EB8003D5774 /* NotesScreen */,
+				A5C46A8D2CBF9EC1003D5774 /* EditNote */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
