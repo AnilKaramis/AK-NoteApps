@@ -32,6 +32,7 @@
 		A5E99F102CDD4516003BF7B0 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E99F0F2CDD4516003BF7B0 /* Date.swift */; };
 		A5E99F142CDDDDC6003BF7B0 /* Notes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A5E99F122CDDDDC6003BF7B0 /* Notes.xcdatamodeld */; };
 		A5E99F172CDE1366003BF7B0 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E99F162CDE1366003BF7B0 /* CoreDataManager.swift */; };
+		A5F199592CECC89D0065AD2F /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F199582CECC89D0065AD2F /* UIFont.swift */; };
 		B13AA1E1B3B99CE08A187965 /* Pods_AK_NotesAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22699AEEEFE4607466C34796 /* Pods_AK_NotesAppTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +87,7 @@
 		A5E99F0F2CDD4516003BF7B0 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		A5E99F132CDDDDC6003BF7B0 /* Notes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Notes.xcdatamodel; sourceTree = "<group>"; };
 		A5E99F162CDE1366003BF7B0 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		A5F199582CECC89D0065AD2F /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
 		B7DEB5354F020F0186C4F25E /* Pods-AK-NotesApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AK-NotesApp.release.xcconfig"; path = "Target Support Files/Pods-AK-NotesApp/Pods-AK-NotesApp.release.xcconfig"; sourceTree = "<group>"; };
 		C1ABB3FB67F0A6C5F84D7F1A /* Pods_AK_NotesApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AK_NotesApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFB16EF6E4E37760909F9923 /* Pods-AK-NotesApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AK-NotesApp.debug.xcconfig"; path = "Target Support Files/Pods-AK-NotesApp/Pods-AK-NotesApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				A52DB5152CC2F93C0047359E /* UIColor.swift */,
 				A5E99F0F2CDD4516003BF7B0 /* Date.swift */,
 				A5C4320D2CEB20F400A341F6 /* String.swift */,
+				A5F199582CECC89D0065AD2F /* UIFont.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 				A5C46A9B2CBFA7DB003D5774 /* NoteViewCellViewModel.swift in Sources */,
 				A5A91ADC2CBC1BC60096C858 /* SceneDelegate.swift in Sources */,
 				A5C46A8F2CBF9ED3003D5774 /* EditNoteViewController.swift in Sources */,
+				A5F199592CECC89D0065AD2F /* UIFont.swift in Sources */,
 				A52DB5162CC2F93C0047359E /* UIColor.swift in Sources */,
 				A5E99F102CDD4516003BF7B0 /* Date.swift in Sources */,
 				A5C46A992CBFA7C4003D5774 /* NoteViewCell.swift in Sources */,
